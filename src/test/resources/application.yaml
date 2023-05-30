@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: integration-test
+  datasource:
+    url: jdbc:h2:mem:integration-testdb
+    username: it
+    password: it
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console.enabled: true
