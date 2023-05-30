@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RecipeFilterRepresentation {
 
+	@Min(0)
+	@Max(Long.MAX_VALUE)
+	private Long id;
+	
 	@Size(min=3, max=250)
 	private String name;
 

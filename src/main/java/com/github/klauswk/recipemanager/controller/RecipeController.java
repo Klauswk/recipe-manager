@@ -6,11 +6,12 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class RecipeController implements RecipeApi {
 	private final RecipeFilterMapper recipeFilterMapper;
 
 	@GetMapping("/v1/recipe")
-	public List<RecipeRepresentation> findAllRecipe(@Valid RecipeFilterRepresentation recipeFilter) {
+	public List<RecipeRepresentation> findAllRecipe(@Nullable @Valid RecipeFilterRepresentation recipeFilter) {
 		return service.fetchRecipe(recipeFilterMapper.toDomain(recipeFilter)).stream().map(mapper::toRepresentation)
 				.collect(Collectors.toList());
 	}
@@ -47,7 +48,7 @@ public class RecipeController implements RecipeApi {
 		return mapper.toRepresentation(service.removeRecipe(mapper.toDomain(representation)));
 	}
 
-	@PatchMapping("/v1/recipe")
+	@PutMapping("/v1/recipe")
 	public RecipeRepresentation updateRecipe(@Valid @RequestBody RecipeRepresentation representation) {
 		return mapper.toRepresentation(service.updateRecipe(mapper.toDomain(representation)));
 	}

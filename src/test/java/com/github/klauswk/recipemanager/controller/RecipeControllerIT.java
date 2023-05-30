@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -138,7 +138,7 @@ public class RecipeControllerIT {
 				.ingredients(insertRecipe.getIngredients())
 				.build();
 		
-		mvc.perform(patch("/v1/recipe").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(updatedRecipe)))
+		mvc.perform(put("/v1/recipe").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(updatedRecipe)))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.name", is(updatedRecipe.getName())))
 				.andExpect(jsonPath("$.id", is(updatedRecipe.getId().intValue())))
@@ -160,7 +160,7 @@ public class RecipeControllerIT {
 		recipe.setId(10l);
 		
 		//When		
-		mvc.perform(patch("/v1/recipe").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(put("/v1/recipe").contentType(MediaType.APPLICATION_JSON)
 					.content(objectMapper.writeValueAsString(recipe)))
 			.andExpect(status().isNotFound())
 			.andExpect(jsonPath("$.message", notNullValue()))
