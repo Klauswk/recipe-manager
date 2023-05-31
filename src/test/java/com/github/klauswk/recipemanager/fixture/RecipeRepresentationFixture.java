@@ -10,7 +10,7 @@ public class RecipeRepresentationFixture {
 	public static RecipeRepresentation omnivorousRecipeRepresentation() {
 		return RecipeRepresentation.builder()
 				.name("Smash potato")
-				.numberOfServings(2)
+				.numberOfServings(4)
 				.vegetarian(false)
 				.ingredients(Arrays.asList(IngredientRepresentationFixture.milk(), IngredientRepresentationFixture.butter(), IngredientRepresentationFixture.potato()))
 				.instructions("Some instructions")

@@ -58,8 +58,7 @@ The filters were implemented using query params, as such, for the necessary task
 - instructions - filter by the instruction string, ignore case
 
 ### Examples
+1 - All vegetarian recipes - http://localhost:8080/v1/recipe?vegetarian=true
+2 - Recipes that can serve 4 persons and have “potatoes” as an ingredient - http://localhost:8080/v1/recipe?includes=potatoes&numberOfServings=4
+3 - Recipes without “salmon” as an ingredient that has “oven” in the instructions. - http://localhost:8080/v1/recipe?excludes=salmon&=oven
 
-1. Whether or not the dish is vegetarian - http://localhost:8080/v1/recipe?vegetarian=true
-2. The number of servings - http://localhost:8080/v1/recipe?includes=potatoes&numberOfServings=4
-3. Specific ingredients (either include or exclude) - http://localhost:8080/v1/recipe?excludes=potatoes
-4. Text search within the instructions - http://localhost:8080/v1/recipe?instruction=some%20instructions
